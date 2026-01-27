@@ -1,0 +1,4 @@
+useDynLib(SESR)
+importFrom(Rcpp, evalCpp)
+export(LmOLS)
+export(LmLasso)

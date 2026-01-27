@@ -1,0 +1,5 @@
+useDynLib(EigenRBinding)
+importFrom(Rcpp, evalCpp)
+export(LmOLS)
+export(LmLasso)
+export(LmRidge)

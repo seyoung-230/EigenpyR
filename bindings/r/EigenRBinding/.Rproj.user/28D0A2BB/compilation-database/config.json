@@ -1,0 +1,30 @@
+{
+    "args": [
+        "-std=gnu++20",
+        "-I/Library/Frameworks/R.framework/Resources/include",
+        "-DNDEBUG",
+        "-I/Users/bak/Dropbox/Personal/@@Ongoint Research/@@@sparse estimation in R and C++/SES/bindings/r/SESR/inst/include",
+        "-DEIGEN_MPL2_ONLY",
+        "-I/opt/R/arm64/include",
+        "-I/opt/homebrew/opt/libomp/include",
+        "-I/usr/local/opt/libomp/include",
+        "-fopenmp",
+        "-fPIC",
+        "-falign-functions=64",
+        "-I/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/Rcpp/include",
+        "-I/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppEigen/include",
+        "-DEIGEN_DONT_VECTORIZE",
+        "-I/Library/Developer/CommandLineTools/usr/lib/clang/16.0.0/include",
+        "-I/usr/local/include",
+        "-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
+        "-I/Library/Developer/CommandLineTools/usr/lib/clang/16/include",
+        "-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include",
+        "-I/Library/Developer/CommandLineTools/usr/include"
+    ],
+    "pch": "RcppEigen",
+    "is_cpp": true,
+    "hash": "1758631608176235583917623571641762357163",
+    "compiler": "10943110504709242660",
+    "rversion": "4.4.1",
+    "dbversion": 4
+}

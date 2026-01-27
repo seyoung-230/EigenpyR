@@ -1,0 +1,5 @@
+remove.packages("EigenRBinding")
+#devtools::install(clean = TRUE)
+Rcpp::loadModule("EigenRBinding_MODULE", TRUE)
+exists("LmLasso")
+exists("LmRidge")

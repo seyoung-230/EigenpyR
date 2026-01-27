@@ -1,0 +1,82 @@
+[
+    {
+        "file": "/Users/kybak/Dropbox/Personal/@@Ongoint Research/@@@sparse estimation in R and C++/SES/bindings/r/SESR/inst/include/RidgeReg/ridge.h",
+        "file_last_write": 1762359089.0,
+        "definitions": [
+            {
+                "usr": "c:@N@SES@S@RidgeReg",
+                "kind": 2,
+                "parent_name": "",
+                "name": "RidgeReg",
+                "file": "/Users/kybak/Dropbox/Personal/@@Ongoint Research/@@@sparse estimation in R and C++/SES/bindings/r/SESR/inst/include/RidgeReg/ridge.h",
+                "line": 7,
+                "column": 7,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "/Users/kybak/Dropbox/Personal/@@Ongoint Research/@@@sparse estimation in R and C++/SES/bindings/r/SESR/src/module.cpp",
+        "file_last_write": 1762359930.0,
+        "definitions": [],
+        "hidden": false
+    },
+    {
+        "file": "/Users/kybak/Dropbox/Personal/@@Ongoint Research/@@@sparse estimation in R and C++/SES/bindings/r/SESR/src/ridge.cpp",
+        "file_last_write": 1762359878.0,
+        "definitions": [
+            {
+                "usr": "c:@N@SES@S@RidgeReg@F@fit#&1$@N@Eigen@S@Matrix>#d#VI-1#VI-1#VI0#VI-1#VI-1#&1$@N@Eigen@S@Matrix>#d#VI-1#VI1#VI0#VI-1#VI1#I#d#",
+                "kind": 7,
+                "parent_name": "RidgeReg",
+                "name": "fit(const MatrixXd &, const VectorXd &, int, double)",
+                "file": "/Users/kybak/Dropbox/Personal/@@Ongoint Research/@@@sparse estimation in R and C++/SES/bindings/r/SESR/src/ridge.cpp",
+                "line": 12,
+                "column": 16,
+                "hidden": false
+            },
+            {
+                "usr": "c:@N@SES@S@RidgeReg@F@predict#&1$@N@Eigen@S@Matrix>#d#VI-1#VI-1#VI0#VI-1#VI-1#1",
+                "kind": 7,
+                "parent_name": "RidgeReg",
+                "name": "predict(const MatrixXd &)",
+                "file": "/Users/kybak/Dropbox/Personal/@@Ongoint Research/@@@sparse estimation in R and C++/SES/bindings/r/SESR/src/ridge.cpp",
+                "line": 23,
+                "column": 20,
+                "hidden": false
+            },
+            {
+                "usr": "c:@N@SES@S@RidgeReg@F@coef#1",
+                "kind": 7,
+                "parent_name": "RidgeReg",
+                "name": "coef",
+                "file": "/Users/kybak/Dropbox/Personal/@@Ongoint Research/@@@sparse estimation in R and C++/SES/bindings/r/SESR/src/ridge.cpp",
+                "line": 28,
+                "column": 20,
+                "hidden": false
+            },
+            {
+                "usr": "c:@N@SES@S@RidgeReg@F@lambda#1",
+                "kind": 7,
+                "parent_name": "RidgeReg",
+                "name": "lambda",
+                "file": "/Users/kybak/Dropbox/Personal/@@Ongoint Research/@@@sparse estimation in R and C++/SES/bindings/r/SESR/src/ridge.cpp",
+                "line": 33,
+                "column": 18,
+                "hidden": false
+            },
+            {
+                "usr": "c:@N@SES@S@RidgeReg@F@set_lambda#d#",
+                "kind": 7,
+                "parent_name": "RidgeReg",
+                "name": "set_lambda(double)",
+                "file": "/Users/kybak/Dropbox/Personal/@@Ongoint Research/@@@sparse estimation in R and C++/SES/bindings/r/SESR/src/ridge.cpp",
+                "line": 34,
+                "column": 18,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    }
+]

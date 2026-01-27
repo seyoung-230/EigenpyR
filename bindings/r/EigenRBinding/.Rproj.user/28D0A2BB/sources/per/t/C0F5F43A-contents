@@ -1,0 +1,27 @@
+set.seed(123)
+n = 100
+p = 10
+X = matrix(rnorm(n * p), n, p)
+beta_true = c(2, -1, rep(0, p - 2))
+y = drop(X %*% beta_true + rnorm(n))
+
+# construct and fit
+ridge = new(RidgeReg, 0.4)
+ridge$fit(X, y, 1000, 1e-6)
+ 
+print(ridge$coef())
+
+# prediction
+X_new = X[1:5, ]
+pred = ridge$predict(X_new)
+print(pred)
+
+# update lambda and fit
+ridge$set_lambda(1)
+ridge$fit(X, y, 1000, 1e-6)
+cat("lambda =", ridge$lambda(), "\n")
+print(ridge$coef())
+
+# comparision between observed and fitted values
+y_hat = ridge$predict(X)
+cat("RMSE:", sqrt(mean((y - y_hat)^2)), "\n")
