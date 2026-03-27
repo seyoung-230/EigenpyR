@@ -12,6 +12,7 @@ add_library(eigenpyr_core STATIC
         core/src/lm_lasso.cpp
         core/src/lm_ridge.cpp
         core/src/mf_sgd.cpp
+        core/src/kernel_ridge.cpp
 )
 
 target_include_directories(eigenpyr_core

@@ -1,9 +1,11 @@
-#pragma once
+#ifndef SES_MF_SGD_H
+#define SES_MF_SGD_H
 
 #include <Eigen/Dense>
 #include <vector>
 #include <random>
 #include <stdexcept>
+using namespace Eigen;
 
 struct Rating {
     int user;
@@ -26,12 +28,12 @@ public:
     void fit(const std::vector<Rating>& ratings, bool verbose = true);
 
     double predict(int user, int item) const;
-    Eigen::MatrixXd full_prediction() const;
+    MatrixXd full_prediction() const;
 
-    const Eigen::MatrixXd& user_factors() const;
-    const Eigen::MatrixXd& item_factors() const;
-    const Eigen::VectorXd& user_bias() const;
-    const Eigen::VectorXd& item_bias() const;
+    const MatrixXd& user_factors() const;
+    const MatrixXd& item_factors() const;
+    const VectorXd& user_bias() const;
+    const VectorXd& item_bias() const;
     double global_mean() const;
 
 private:
@@ -44,10 +46,10 @@ private:
     unsigned int seed_;
     double global_mean_;
 
-    Eigen::MatrixXd P_;
-    Eigen::MatrixXd Q_;
-    Eigen::VectorXd bu_;
-    Eigen::VectorXd bi_;
+    MatrixXd P_;
+    MatrixXd Q_;
+    VectorXd bu_;
+    VectorXd bi_;
 
     std::mt19937 rng_;
 
@@ -55,3 +57,5 @@ private:
     void validate_indices(const std::vector<Rating>& ratings) const;
     double compute_rmse(const std::vector<Rating>& ratings) const;
 };
+
+#endif //SES_MF_SGD_H
