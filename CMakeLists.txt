@@ -3,6 +3,9 @@ project(EigenPyR)
 
 set(CMAKE_CXX_STANDARD 20)
 
+option(BUILD_PYTHON "Build Python bindings" ON)
+option(BUILD_EXAMPLES "Build C++ examples" ON)
+
 # find_package(Eigen3 REQUIRED)  --> local installation of Eigen not required because of vendoring
 
 # 코어 라이브러리 (헤더/구현)
@@ -21,18 +24,31 @@ target_include_directories(eigenpyr_core
         ${CMAKE_CURRENT_SOURCE_DIR}/external/eigen
 )
 
+# Python binding
+if(BUILD_PYTHON)
+    # find_package(pybind11 CONFIG REQUIRED)
+
+    add_subdirectory(external/pybind11)
+
+    pybind11_add_module(eigenpyr
+        bindings/python/bindings.cpp
+    )
+
+    target_link_libraries(eigenpyr PRIVATE eigenpyr_core)
+endif()
 
 # examples executable
-file(GLOB EXAMPLE_SOURCES "${CMAKE_SOURCE_DIR}/examples/*.cpp")
+if(BUILD_EXAMPLES)
+    file(GLOB EXAMPLE_SOURCES "${CMAKE_SOURCE_DIR}/examples/*.cpp")
+    # 각 파일에 대해 반복
+    foreach(example_src ${EXAMPLE_SOURCES})
+        # 파일 이름에서 확장자 제거
+        get_filename_component(example_name ${example_src} NAME_WE)
+        # 실행파일 생성
+        add_executable(${example_name} ${example_src})
+        # ses_core 라이브러리 링크
+        target_link_libraries(${example_name} PRIVATE eigenpyr_core)
 
-# 각 파일에 대해 반복
-foreach(example_src ${EXAMPLE_SOURCES})
-    # 파일 이름에서 확장자 제거
-    get_filename_component(example_name ${example_src} NAME_WE)
-    # 실행파일 생성
-    add_executable(${example_name} ${example_src})
-    # ses_core 라이브러리 링크
-    target_link_libraries(${example_name} PRIVATE eigenpyr_core)
-
-    message(STATUS "Example added: ${example_name}")
-endforeach()
+        message(STATUS "Example added: ${example_name}")
+    endforeach()
+endif()
