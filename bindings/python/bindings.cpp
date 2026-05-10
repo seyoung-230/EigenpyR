@@ -112,7 +112,7 @@ static void bind_mf_sgd(py::module_& m) {
 static void bind_kernel_ridge(py::module_& m) {
     py::class_<KernelRidge>(m, "KernelRidge")
         .def(py::init<double, double>(),
-             py::arg("lambda"),
+             py::arg("lambda_"),
              py::arg("sigma"))
         .def("fit", &KernelRidge::fit,
              py::arg("X"),
