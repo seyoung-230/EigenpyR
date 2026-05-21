@@ -2,12 +2,12 @@
 #include <pybind11/eigen.h>
 #include <pybind11/stl.h>
 
-#include "lm_ols.h"
-#include "lm_lasso.h"
-#include "lm_ridge.h"
+#include "linear_models/lm_ols.h"
+#include "linear_models/lm_lasso.h"
+#include "linear_models/lm_ridge.h"
 #include "mf_sgd.h"
 #include "kernel_ridge.h"
-#include "utils.h"
+#include "linear_models/utils.h"
 
 namespace py = pybind11;
 

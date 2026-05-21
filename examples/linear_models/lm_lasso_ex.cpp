@@ -1,8 +1,8 @@
 #include <iostream>
 #include <random>
 #include <Eigen/Dense>
-#include "utils.h"
-#include "lm_lasso.h"
+#include "linear_models/utils.h"
+#include "linear_models/lm_lasso.h"
 using namespace std;
 
 int main() {

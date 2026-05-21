@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "linear_models/utils.h"
 
 void standardization(const MatrixXd& X, MatrixXd& X_std, VectorXd& col_means, VectorXd& col_sds, bool centering, bool scaling) {
     int n = X.rows();

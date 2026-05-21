@@ -1,5 +1,5 @@
-#include "utils.h"
-#include "lm_ridge.h"
+#include "linear_models/utils.h"
+#include "linear_models/lm_ridge.h"
 
 LmRidge::LmRidge(double lambda) {
     lambda_ = lambda;

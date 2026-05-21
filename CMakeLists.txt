@@ -10,10 +10,10 @@ option(BUILD_EXAMPLES "Build C++ examples" ON)
 
 # 코어 라이브러리 (헤더/구현)
 add_library(eigenpyr_core STATIC
-        core/src/lm_ols.cpp
-        core/src/utils.cpp
-        core/src/lm_lasso.cpp
-        core/src/lm_ridge.cpp
+        core/src/linear_models/lm_ols.cpp
+        core/src/linear_models/utils.cpp
+        core/src/linear_models/lm_lasso.cpp
+        core/src/linear_models/lm_ridge.cpp
         core/src/mf_sgd.cpp
         core/src/kernel_ridge.cpp
 )
@@ -39,7 +39,9 @@ endif()
 
 # examples executable
 if(BUILD_EXAMPLES)
-    file(GLOB EXAMPLE_SOURCES "${CMAKE_SOURCE_DIR}/examples/*.cpp")
+    file(GLOB EXAMPLE_SOURCES "${CMAKE_SOURCE_DIR}/examples/*.cpp"
+                              "${CMAKE_SOURCE_DIR}/examples/linear_models/*.cpp"
+    )
     # 각 파일에 대해 반복
     foreach(example_src ${EXAMPLE_SOURCES})
         # 파일 이름에서 확장자 제거

@@ -1,5 +1,5 @@
-#include "utils.h"
-#include "lm_lasso.h"
+#include "linear_models/utils.h"
+#include "linear_models/lm_lasso.h"
 
 LmLasso::LmLasso(double lambda) {
     lambda_ = lambda;

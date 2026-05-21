@@ -1,6 +1,6 @@
 #include <Eigen/Dense>
 #include <iostream>
-#include "utils.h"
+#include "linear_models/utils.h"
 
 using namespace Eigen;
 using namespace std;

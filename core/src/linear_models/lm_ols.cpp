@@ -1,5 +1,5 @@
-#include "utils.h"
-#include "lm_ols.h"
+#include "linear_models/utils.h"
+#include "linear_models/lm_ols.h"
 
 void LmOLS::fit(const MatrixXd &X, const VectorXd &y) {
     int n = X.rows();
