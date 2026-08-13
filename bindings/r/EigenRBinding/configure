@@ -1,0 +1,50 @@
+#!/bin/sh
+# Auto-runs before compilation (R CMD INSTALL / devtools::load_all / pkgbuild).
+# Syncs core/include, core/src into this package's inst/include, src so the
+# R binding always builds against the current C++ core - no manual copy step.
+set -e
+
+PKG_ROOT="$(pwd)"
+CORE_INC="$PKG_ROOT/../../../core/include"
+CORE_SRC="$PKG_ROOT/../../../core/src"
+PKG_INC="$PKG_ROOT/inst/include"
+PKG_SRC="$PKG_ROOT/src"
+
+# Flatten-copy one file from core into $dest_dir, rewriting any
+# #include "<subdir>/x.h" (core keeps things like linear_models/utils.h)
+# down to #include "x.h" to match this package's flat inst/include, src.
+copy_flat() {
+  src="$1"
+  base_dir="$2"
+  dest_dir="$3"
+  rel="${src#"$base_dir"/}"
+  dest="$dest_dir/$(basename "$src")"
+  if [ "$rel" != "$(basename "$src")" ]; then
+    subdir="${rel%/*}/"
+    sed "s#${subdir}##g" "$src" > "$dest"
+  else
+    cp -f "$src" "$dest"
+  fi
+}
+
+if [ -d "$CORE_INC" ] && [ -d "$CORE_SRC" ]; then
+  echo "[EigenRBinding] configure: syncing core -> inst/include, src"
+
+  mkdir -p "$PKG_INC" "$PKG_SRC"
+
+  find "$CORE_INC" -type f -name "*.h" | while IFS= read -r f; do
+    copy_flat "$f" "$CORE_INC" "$PKG_INC"
+  done
+
+  # module.cpp is the R-only Rcpp module registration file; it lives only in
+  # this package's src/ and is never overwritten from core.
+  find "$CORE_SRC" -type f -name "*.cpp" ! -name "module.cpp" | while IFS= read -r f; do
+    copy_flat "$f" "$CORE_SRC" "$PKG_SRC"
+  done
+
+  echo "[EigenRBinding] configure: sync complete"
+else
+  echo "[EigenRBinding] configure: core/ not found next to the package (standalone build?) - using inst/include, src as-is"
+fi
+
+exit 0
