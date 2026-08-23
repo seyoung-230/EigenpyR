@@ -128,6 +128,7 @@ static void bind_kernel_ridge(py::module_& m) {
 
 PYBIND11_MODULE(eigenpyr, m) {
     m.doc() = "Python bindings for EigenPyR";
+    m.attr("__version__") = "0.1.0";  // keep in sync with pyproject.toml [project].version
 
     bind_lm_ols(m);
     bind_lm_lasso(m);

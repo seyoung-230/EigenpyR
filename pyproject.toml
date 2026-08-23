@@ -1,0 +1,17 @@
+[build-system]
+requires = ["scikit-build-core>=0.10", "pybind11>=2.12"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "eigenpyr"
+version = "0.1.0"
+description = "Eigen-backed C++ numerical methods (OLS/Ridge/Lasso, kernel ridge regression, matrix factorization SGD), bound to Python via pybind11"
+requires-python = ">=3.9"
+dependencies = ["numpy"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.scikit-build]
+wheel.packages = []
+cmake.define = { BUILD_EXAMPLES = "OFF" }

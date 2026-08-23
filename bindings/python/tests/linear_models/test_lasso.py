@@ -1,6 +1,3 @@
-import sys
-sys.path.append(r"C:\Users\User\Desktop\230\eigenPyR\260809\EigenpyR\build\Debug")
-
 import numpy as np
 import matplotlib.pyplot as plt
 import eigenpyr

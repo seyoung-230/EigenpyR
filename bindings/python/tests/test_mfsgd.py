@@ -1,6 +1,3 @@
-import sys
-sys.path.append(r"C:\Users\User\Desktop\230\eigenPyR\260809\EigenpyR\build\Debug")
-
 import eigenpyr
 
 # user: 0,1,2,3
