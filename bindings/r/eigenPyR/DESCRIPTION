@@ -1,0 +1,16 @@
+Package: eigenPyR
+Type: Package
+Title: Eigen library R binding
+Version: 0.1.1
+Authors@R: 
+  c(person(given = "Kwan-Young",
+           family = "Bak",
+           role = c("aut", "cre", "cph"),
+           email = "kybak@sungshin.ac.kr",
+           comment = c(ORCID = "0000-0002-4541-160X", "Sungshin Women's University")))
+Description: Eigen library R binding
+License: GPL (>= 2)
+Encoding: UTF-8
+Imports: Rcpp (>= 1.1.0)
+LinkingTo: Rcpp, RcppEigen
+Config/roxygen2/version: 8.1.0

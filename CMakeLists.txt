@@ -32,14 +32,14 @@ if(BUILD_PYTHON)
     # install pybind11 (`pip install pybind11`) so this find_package can see it.
     find_package(pybind11 CONFIG REQUIRED)
 
-    pybind11_add_module(eigenpyr
+    pybind11_add_module(eigenPyR
         bindings/python/bindings.cpp
     )
 
-    target_link_libraries(eigenpyr PRIVATE eigenpyr_core)
+    target_link_libraries(eigenPyR PRIVATE eigenpyr_core)
 
     # scikit-build-core installs whatever lands here straight into the wheel root.
-    install(TARGETS eigenpyr LIBRARY DESTINATION .)
+    install(TARGETS eigenPyR LIBRARY DESTINATION .)
 endif()
 
 # examples executable

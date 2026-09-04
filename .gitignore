@@ -18,7 +18,9 @@ external/eigen/*
 *.so
 *.dll
 .Rhistory
+.RData
 
 __pycache__/
 *.pyc
 *.egg-info/
+.venv/

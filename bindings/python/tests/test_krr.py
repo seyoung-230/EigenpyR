@@ -1,5 +1,5 @@
 import numpy as np
-import eigenpyr
+import eigenPyR
 
 PI = np.pi
 
@@ -20,7 +20,7 @@ for i in range(n):
 lambda_ = 1e-3
 sigma = 0.2
 
-model = eigenpyr.KernelRidge(lambda_, sigma)
+model = eigenPyR.KernelRidge(lambda_, sigma)
 model.fit(X, y)
 
 fitted = model.predict(X)

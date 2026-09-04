@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import eigenpyr
+import eigenPyR
 
 # reproducibility
 np.random.seed(123)
@@ -15,7 +15,7 @@ intercept = 1.0
 y = intercept + X @ beta_true + 0.1 * np.random.randn(n)
 
 # construct and fit
-lm_ols = eigenpyr.LmOLS()
+lm_ols = eigenPyR.LmOLS()
 lm_ols.fit(X, y)
 
 print("intercept =", lm_ols.intercept)

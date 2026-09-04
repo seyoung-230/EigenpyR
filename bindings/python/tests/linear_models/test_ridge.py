@@ -1,5 +1,5 @@
 import numpy as np
-import eigenpyr
+import eigenPyR
 
 np.random.seed(0)
 
@@ -16,7 +16,7 @@ for i in range(n):
     for j in range(p):
         y[i] += X[i, j] * true_coef[j + 1]
 
-lm_ridge = eigenpyr.LmRidge(0.03)
+lm_ridge = eigenPyR.LmRidge(0.03)
 lm_ridge.fit(X, y)
 
 print("true coefficients:", true_coef)

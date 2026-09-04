@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import eigenpyr
+import eigenPyR
 
 # =========================
 # LmOLS check
@@ -15,7 +15,7 @@ beta_true = np.array([2.0, -1.0])
 intercept = 1.0
 y = intercept + X @ beta_true + 0.1 * np.random.randn(n)
 
-lm_ols = eigenpyr.LmOLS()
+lm_ols = eigenPyR.LmOLS()
 lm_ols.fit(X, y)
 
 print("=== LmOLS ===")
@@ -58,7 +58,7 @@ y = true_coef[0] + 0.1 * rng.normal(size=n)
 for j in range(p):
     y += X[:, j] * true_coef[j + 1]
 
-lm_lasso = eigenpyr.LmLasso(0.03)
+lm_lasso = eigenPyR.LmLasso(0.03)
 lm_lasso.fit(X, y)
 
 print("true coefficients =", true_coef)
