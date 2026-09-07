@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 option(BUILD_PYTHON "Build Python bindings" ON)
 option(BUILD_EXAMPLES "Build C++ examples" ON)
 
-# find_package(Eigen3 REQUIRED)  --> local installation of Eigen not required because of vendoring
+# find_package(Eigen3 REQUIRED)  --> local installation of Eigen not required; external/eigen/Eigen is vendored in git
 
 # 코어 라이브러리 (헤더/구현)
 add_library(eigenpyr_core STATIC
@@ -26,15 +26,20 @@ target_include_directories(eigenpyr_core
 
 # Python binding
 if(BUILD_PYTHON)
-    # find_package(pybind11 CONFIG REQUIRED)
+    # pybind11 comes from the `pybind11` PyPI package (declared in pyproject.toml's
+    # build-system requires), not from a vendored copy - scikit-build-core points
+    # CMAKE_PREFIX_PATH at it automatically. For a plain `cmake` build outside pip,
+    # install pybind11 (`pip install pybind11`) so this find_package can see it.
+    find_package(pybind11 CONFIG REQUIRED)
 
-    add_subdirectory(external/pybind11)
-
-    pybind11_add_module(eigenpyr
+    pybind11_add_module(eigenPyR
         bindings/python/bindings.cpp
     )
 
-    target_link_libraries(eigenpyr PRIVATE eigenpyr_core)
+    target_link_libraries(eigenPyR PRIVATE eigenpyr_core)
+
+    # scikit-build-core installs whatever lands here straight into the wheel root.
+    install(TARGETS eigenPyR LIBRARY DESTINATION .)
 endif()
 
 # examples executable

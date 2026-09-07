@@ -1,23 +1,20 @@
-import sys
-sys.path.append(r"C:\Users\User\Desktop\230\eigenPyR-git\EigenPyR\build\Debug")
-
-import eigenpyr
+import eigenPyR
 
 # user: 0,1,2,3
 # item: 0,1,2,3,4
 ratings = [
-    eigenpyr.Rating(),
-    eigenpyr.Rating(),
-    eigenpyr.Rating(),
-    eigenpyr.Rating(),
-    eigenpyr.Rating(),
-    eigenpyr.Rating(),
-    eigenpyr.Rating(),
-    eigenpyr.Rating(),
-    eigenpyr.Rating(),
-    eigenpyr.Rating(),
-    eigenpyr.Rating(),
-    eigenpyr.Rating()
+    eigenPyR.Rating(),
+    eigenPyR.Rating(),
+    eigenPyR.Rating(),
+    eigenPyR.Rating(),
+    eigenPyR.Rating(),
+    eigenPyR.Rating(),
+    eigenPyR.Rating(),
+    eigenPyR.Rating(),
+    eigenPyR.Rating(),
+    eigenPyR.Rating(),
+    eigenPyR.Rating(),
+    eigenPyR.Rating()
 ]
 
 ratings[0].user = 0
@@ -71,7 +68,7 @@ ratings[11].value = 4.0
 n_users = 4
 n_items = 5
 
-model = eigenpyr.MatrixFactorizationSGD(
+model = eigenPyR.MatrixFactorizationSGD(
     n_users,
     n_items,
     3,      # n_factors

@@ -191,6 +191,6 @@ bindings/python/tests/
 After building the Python module, the package can be imported in Python as follows:
 
 ```python
-import eigenpyr
+import eigenPyR
 ```
 

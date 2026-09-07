@@ -1,3 +1,0 @@
-.onLoad = function(lib, pkg) {
-  Rcpp::loadModule("SES_module", what = TRUE)
-}
