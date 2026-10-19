@@ -97,46 +97,19 @@ This structure separates the main methods discussed in the paper from additional
 
 ## External Dependencies
 
-This project uses external libraries such as Eigen and pybind11.
-
-The `external/` directory is used to store these third-party libraries locally:
-
-```text
-external/
-├── eigen/
-└── pybind11/
-```
-
-In this project, Eigen is used for matrix and vector computations, while pybind11 is used to create Python bindings for the C++ implementations.
-
-The `external/` directory is excluded from Git tracking through `.gitignore`. Therefore, Eigen and pybind11 are not included directly in this repository. Before building the project, users should download these libraries separately and place them inside the `external/` directory.
-
-The expected directory structure is:
-
-```text
-EigenPyR/
-├── external/
-│   ├── eigen/
-│   │   └── Eigen/
-│   └── pybind11/
-│       ├── include/
-│       ├── tools/
-│       └── CMakeLists.txt
-├── CMakeLists.txt
-└── ...
-```
-
-Eigen is a header-only C++ template library. pybind11 is commonly used through its headers together with its CMake configuration files, so the full pybind11 source directory should be placed under `external/pybind11/` when using `add_subdirectory()` in CMake.
-
+- **Eigen** (header-only, MPL2) is vendored under `external/eigen/` (version 5.0.1), so no separate installation is needed.
+- **pybind11** is not vendored; it is obtained from the `pybind11` package on PyPI at build time (declared in `pyproject.toml`). For a plain CMake build outside `pip`, run `pip install pybind11` first.
+- **Rcpp** and **RcppEigen** (R packages) are required for the R binding.
+- **Armadillo** and **OpenBLAS** are required only for the benchmark in `benchmark/`.
 ## Requirements
 
 The project uses the following tools and libraries:
 
 - C++20
 - CMake
-- Eigen
-- pybind11
-- Rcpp or related R binding tools
+- Eigen (vendored)
+- pybind11 (from PyPI)
+- Rcpp and RcppEigen (R binding)
 - Armadillo, for benchmark comparison
 
 ## Build
@@ -194,3 +167,34 @@ After building the Python module, the package can be imported in Python as follo
 import eigenPyR
 ```
 
+## R Binding
+
+The R package `eigenPyR` is located directly under `bindings/r/`. Before compilation, its `configure` script copies the sources from `core/` into the package, so `core/` remains the single implementation that both bindings use. Install it from the repository root with
+
+```bash
+R CMD INSTALL bindings/r
+```
+
+and use it from R as follows:
+
+```r
+library(eigenPyR)
+model <- new(KernelRidge, 0.001, 0.2)
+X <- matrix(seq(-1, 1, length.out = 100), ncol = 1)
+model$fit(X, sin(2 * pi * X[, 1]))
+pred <- model$predict(X)
+```
+
+## Benchmark
+
+The kernel ridge regression benchmark reported in the paper is located in `benchmark/`. It compares Eigen with its internal engine, Eigen linked to OpenBLAS (`EIGEN_USE_BLAS`), and Armadillo. It requires Armadillo and OpenBLAS; the Eigen 5.0.0 headers used for the reported timings are included in `benchmark/eigen_lib/`.
+
+```bash
+cd benchmark
+cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+./build/bench_krr_core   # Eigen internal engine vs Armadillo; writes result.csv
+./build/bench_krr_blas   # Eigen linked to OpenBLAS vs Armadillo; writes result.csv
+```
+
+Each program writes `result.csv` to the current directory, so rename it after each run. The settings (`d = 5`, `n_test = 100`, 15 repetitions, `n = 1000, ..., 4000`) are set in `benchmark/src/main.cpp`. The files `result_default.csv` and `result_blas.csv` contain the timings reported in the paper.

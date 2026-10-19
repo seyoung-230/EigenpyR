@@ -49,7 +49,7 @@ print("\n=== LmLasso ===")
 n = 100
 p = 5
 
-true_coef = np.array([1, 2, -1, 0, 0, 0], dtype=float)   # intercept 포함
+true_coef = np.array([1, 2, -1, 0, 0, 0], dtype=float)   # including the intercept
 
 rng = np.random.default_rng(1)
 X = rng.uniform(-1.0, 1.0, size=(n, p))

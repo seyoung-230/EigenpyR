@@ -8,7 +8,7 @@ option(BUILD_EXAMPLES "Build C++ examples" ON)
 
 # find_package(Eigen3 REQUIRED)  --> local installation of Eigen not required; external/eigen/Eigen is vendored in git
 
-# 코어 라이브러리 (헤더/구현)
+# Core library (headers and implementation)
 add_library(eigenpyr_core STATIC
         core/src/linear_models/lm_ols.cpp
         core/src/linear_models/utils.cpp
@@ -47,13 +47,13 @@ if(BUILD_EXAMPLES)
     file(GLOB EXAMPLE_SOURCES "${CMAKE_SOURCE_DIR}/examples/*.cpp"
                               "${CMAKE_SOURCE_DIR}/examples/linear_models/*.cpp"
     )
-    # 각 파일에 대해 반복
+    # Loop over each example source file
     foreach(example_src ${EXAMPLE_SOURCES})
-        # 파일 이름에서 확장자 제거
+        # Strip the extension from the file name
         get_filename_component(example_name ${example_src} NAME_WE)
-        # 실행파일 생성
+        # Create the executable
         add_executable(${example_name} ${example_src})
-        # ses_core 라이브러리 링크
+        # Link the eigenpyr_core library
         target_link_libraries(${example_name} PRIVATE eigenpyr_core)
 
         message(STATUS "Example added: ${example_name}")
